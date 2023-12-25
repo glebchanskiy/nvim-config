@@ -8,3 +8,4 @@
         {text = "󰌵", texthl = "DiagnosticSignHint"})
 
       require("neo-tree").setup({})
+
