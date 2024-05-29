@@ -31,7 +31,7 @@ require("lazy").setup({
   {'hrsh7th/cmp-buffer'}, 
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'}, 
-  {'hrsh7th/nvim-cmp'}, 
+  -- {'hrsh7th/nvim-cmp'}, 
   {'hrsh7th/cmp-nvim-lsp' },
   {'rebelot/kanagawa.nvim'},
   {'williamboman/nvim-lsp-installer'},
@@ -59,5 +59,27 @@ require("lazy").setup({
     },
 {'akinsho/toggleterm.nvim', version = "*", config = true},
 {"folke/which-key.nvim"},
+{
+  "luckasRanarison/tailwind-tools.nvim",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
+},
+{
+  "hrsh7th/nvim-cmp",
+  dependencies = {
+    "luckasRanarison/tailwind-tools.nvim",
+    "onsails/lspkind-nvim",
+    -- ...
+  },
+  opts = function()
+    return {
+      -- ...
+      formatting = {
+        format = require("lspkind").cmp_format({
+          before = require("tailwind-tools.cmp").lspkind_format
+        })
+      }
+    }
+    end
+}
 })
 
